@@ -1,241 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - View Messages</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin · Messages</title>
     <style>
-        :root {
-            --purple-1: #0a0216;
-            --purple-2: #140826;
-            --purple-3: #1f0e3a;
-            --purple-4: #3b1c6e;
-            --purple-5: #6b3bc9;
-            --purple-6: #9b6eff;
-            --purple-7: #c49eff;
-            --purple-glow: #b87cff;
-            --crisis-red: #ff3b6f;
-            --dark-bg: #05020a;
-            --card-bg: #0f0820;
-            --success-green: #4ade80;
-            --warning-yellow: #fbbf24;
-        }
-
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
-
         body {
-            background: var(--dark-bg);
+            background: #05020a;
             min-height: 100vh;
             padding: 20px;
         }
-
         .container {
-            max-width: 1200px;
+            max-width: 1280px;
             margin: 0 auto;
         }
 
         .login-box {
             max-width: 420px;
             margin: 100px auto;
-            background: var(--card-bg);
-            padding: 45px;
-            border-radius: 20px;
-            border: 1px solid var(--purple-4);
-            box-shadow: 0 0 40px rgba(107, 59, 201, 0.15), inset 0 0 60px rgba(107, 59, 201, 0.05);
+            background: #0f0820;
+            padding: 45px 35px;
+            border-radius: 24px;
+            border: 1px solid #3b1c6e;
+            box-shadow: 0 0 40px rgba(107, 59, 201, 0.15);
         }
-
         .login-box h2 {
-            color: var(--purple-7);
+            color: #c49eff;
             font-size: 28px;
-            margin-bottom: 10px;
             text-align: center;
         }
-
         .login-box .subtitle {
             color: #6a5a8a;
             text-align: center;
-            margin-bottom: 30px;
+            margin: 8px 0 28px;
             font-size: 14px;
         }
-
         .login-box input {
             width: 100%;
             padding: 14px 18px;
             margin-bottom: 20px;
-            background: var(--purple-2);
-            border: 1px solid var(--purple-4);
+            background: #140826;
+            border: 1px solid #3b1c6e;
             border-radius: 12px;
-            color: white;
+            color: #fff;
             font-size: 14px;
-            transition: all 0.3s;
             outline: none;
+            transition: 0.25s;
         }
-
         .login-box input:focus {
-            border-color: var(--purple-6);
-            box-shadow: 0 0 20px rgba(155, 110, 255, 0.15);
+            border-color: #9b6eff;
+            box-shadow: 0 0 20px rgba(155, 110, 255, 0.12);
         }
-
-        .login-box input::placeholder {
-            color: #4a3a6a;
-        }
-
         .login-box button {
             width: 100%;
             padding: 14px;
-            background: linear-gradient(135deg, var(--purple-5), var(--purple-6));
-            color: white;
+            background: linear-gradient(135deg, #6b3bc9, #9b6eff);
             border: none;
             border-radius: 12px;
-            font-size: 16px;
+            color: #fff;
             font-weight: 600;
+            font-size: 16px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: 0.25s;
         }
-
         .login-box button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(107, 59, 201, 0.3);
+            box-shadow: 0 10px 30px rgba(107, 59, 201, 0.35);
         }
-
         .login-error {
-            color: var(--crisis-red);
+            color: #ff3b6f;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 14px;
             font-size: 14px;
             display: none;
         }
 
         .header {
-            background: var(--card-bg);
-            padding: 25px 30px;
-            border-radius: 16px;
-            margin-bottom: 25px;
-            border: 1px solid var(--purple-4);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            background: #0f0820;
+            padding: 20px 28px;
+            border-radius: 18px;
+            margin-bottom: 28px;
+            border: 1px solid #3b1c6e;
             display: flex;
+            flex-wrap: wrap;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
+            gap: 16px;
         }
-
         .header-left h1 {
-            color: var(--purple-7);
+            color: #c49eff;
             font-size: 26px;
             display: flex;
             align-items: center;
             gap: 12px;
+            flex-wrap: wrap;
         }
-
         .header-left h1 span {
-            background: var(--purple-4);
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: var(--purple-6);
+            background: #3b1c6e;
+            padding: 2px 14px;
+            border-radius: 30px;
+            font-size: 15px;
+            color: #9b6eff;
         }
-
         .stats {
             color: #6a5a8a;
             font-size: 14px;
-            margin-top: 5px;
+            margin-top: 4px;
         }
-
         .stats strong {
-            color: var(--purple-6);
+            color: #9b6eff;
         }
-
         .header-actions {
             display: flex;
             gap: 10px;
             flex-wrap: wrap;
         }
-
-        .btn-refresh {
-            background: var(--purple-4);
-            color: var(--purple-7);
+        .btn-refresh, .btn-logout {
             padding: 10px 22px;
-            border: 1px solid var(--purple-5);
             border-radius: 10px;
-            cursor: pointer;
             font-size: 14px;
-            transition: all 0.3s;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid transparent;
         }
-
+        .btn-refresh {
+            background: #3b1c6e;
+            color: #c49eff;
+            border-color: #6b3bc9;
+        }
         .btn-refresh:hover {
-            background: var(--purple-5);
-            color: white;
+            background: #6b3bc9;
+            color: #fff;
         }
-
         .btn-logout {
             background: transparent;
-            color: var(--crisis-red);
-            padding: 10px 22px;
-            border: 1px solid var(--crisis-red);
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.3s;
+            color: #ff3b6f;
+            border-color: #ff3b6f;
         }
-
         .btn-logout:hover {
-            background: var(--crisis-red);
-            color: white;
+            background: #ff3b6f;
+            color: #fff;
         }
 
         .tabs {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            background: var(--card-bg);
-            padding: 10px;
+            gap: 4px;
+            background: #0f0820;
+            padding: 6px;
             border-radius: 16px;
-            border: 1px solid var(--purple-4);
+            border: 1px solid #3b1c6e;
+            margin-bottom: 28px;
+            flex-wrap: wrap;
         }
-
-        .tab {
+        .tab-btn {
             flex: 1;
-            padding: 12px;
+            min-width: 110px;
+            padding: 12px 18px;
             background: transparent;
-            color: #6a5a8a;
             border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 14px;
+            border-radius: 12px;
+            color: #6a5a8a;
             font-weight: 600;
-            transition: all 0.3s;
+            font-size: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
-
-        .tab.active {
-            background: var(--purple-4);
-            color: var(--purple-7);
+        .tab-btn:hover {
+            color: #c49eff;
+            background: #1f0e3a;
         }
-
-        .tab:hover:not(.active) {
-            background: var(--purple-2);
+        .tab-btn.active {
+            background: #3b1c6e;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(107, 59, 201, 0.25);
+        }
+        .tab-btn .badge {
+            background: #6b3bc9;
+            color: #fff;
+            font-size: 11px;
+            padding: 0 10px;
+            border-radius: 30px;
+            line-height: 20px;
+        }
+        .tab-btn.active .badge {
+            background: #9b6eff;
         }
 
         .messages-grid {
             display: grid;
             gap: 20px;
         }
-
         .message-card {
-            background: var(--card-bg);
+            background: #0f0820;
             border-radius: 16px;
-            padding: 25px;
-            border: 1px solid var(--purple-4);
-            transition: all 0.3s;
+            padding: 24px 26px;
+            border: 1px solid #3b1c6e;
+            transition: 0.2s;
             position: relative;
-            overflow: hidden;
+            animation: fadeUp 0.3s ease;
         }
-
+        @keyframes fadeUp {
+            0% { opacity: 0; transform: translateY(14px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .message-card:hover {
+            border-color: #6b3bc9;
+            box-shadow: 0 8px 28px rgba(107, 59, 201, 0.10);
+        }
         .message-card::before {
             content: '';
             position: absolute;
@@ -243,339 +224,256 @@
             top: 0;
             bottom: 0;
             width: 4px;
-            background: linear-gradient(to bottom, var(--purple-5), var(--purple-6));
+            background: linear-gradient(180deg, #6b3bc9, #9b6eff);
+            border-radius: 0 4px 4px 0;
         }
-
-        .message-card:hover {
-            transform: translateY(-3px);
-            border-color: var(--purple-5);
-            box-shadow: 0 8px 30px rgba(107, 59, 201, 0.15);
+        .message-card.unread::before {
+            background: linear-gradient(180deg, #ff3b6f, #ff6b8a);
         }
-
-        .message-card.read::before {
-            background: #4a3a6a;
-        }
-
-        .message-card.archived {
-            opacity: 0.6;
-            border-color: var(--purple-2);
-        }
-
-        .message-card.archived::before {
-            background: #2a1a4a;
-        }
-
-        .message-header {
+        .message-card .card-header {
             display: flex;
-            justify-content: space-between;
-            align-items: start;
-            margin-bottom: 15px;
             flex-wrap: wrap;
-            gap: 10px;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 12px;
         }
-
-        .sender-info {
-            flex: 1;
-        }
-
         .sender-name {
             font-weight: 600;
-            color: var(--purple-7);
+            color: #c49eff;
             font-size: 18px;
         }
-
-        .sender-email {
-            color: var(--purple-6);
-            font-size: 14px;
-            margin-left: 10px;
+        .sender-email, .sender-mobile, .sender-institution {
+            font-size: 13px;
+            margin-left: 8px;
         }
-
-        .sender-mobile {
-            color: var(--success-green);
-            font-size: 14px;
-            margin-left: 10px;
-        }
-
-        .sender-institution {
-            color: var(--warning-yellow);
-            font-size: 14px;
-            margin-left: 10px;
-        }
-
-        .message-time {
+        .sender-email { color: #9b6eff; }
+        .sender-mobile { color: #4ade80; }
+        .sender-institution { color: #fbbf24; }
+        .msg-time {
             color: #4a3a6a;
             font-size: 12px;
+            background: #140826;
+            padding: 4px 14px;
+            border-radius: 30px;
             white-space: nowrap;
-            padding: 4px 12px;
-            background: var(--purple-2);
-            border-radius: 20px;
         }
-
         .message-body {
             color: #b8a8d8;
             line-height: 1.6;
-            margin: 15px 0;
-            padding: 15px 18px;
-            background: var(--purple-2);
+            padding: 14px 18px;
+            background: #140826;
             border-radius: 10px;
+            border-left: 2px solid #3b1c6e;
             white-space: pre-wrap;
-            border-left: 2px solid var(--purple-4);
+            margin: 10px 0 14px;
         }
-
-        .message-actions {
+        .card-actions {
             display: flex;
             gap: 10px;
-            margin-top: 15px;
-            border-top: 1px solid var(--purple-2);
-            padding-top: 15px;
             flex-wrap: wrap;
+            margin-top: 6px;
         }
-
-        .btn-read {
-            background: var(--purple-4);
-            color: var(--purple-7);
-            padding: 8px 18px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
+        .card-actions button {
+            background: transparent;
+            border: 1px solid #3b1c6e;
+            color: #b8a8d8;
+            padding: 6px 16px;
+            border-radius: 30px;
             font-size: 12px;
-            transition: all 0.3s;
-        }
-
-        .btn-read:hover {
-            background: var(--purple-5);
-        }
-
-        .btn-read.read-btn {
-            background: #2a1a4a;
-            color: #4a3a6a;
-            cursor: default;
-        }
-
-        .btn-archive {
-            background: var(--purple-2);
-            color: var(--warning-yellow);
-            padding: 8px 18px;
-            border: 1px solid var(--warning-yellow);
-            border-radius: 8px;
             cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
         }
-
-        .btn-archive:hover {
-            background: var(--warning-yellow);
-            color: var(--dark-bg);
+        .card-actions button:hover {
+            background: #3b1c6e;
+            color: #fff;
         }
-
-        .btn-unarchive {
-            background: var(--purple-2);
-            color: var(--success-green);
-            padding: 8px 18px;
-            border: 1px solid var(--success-green);
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 12px;
-            transition: all 0.3s;
+        .card-actions .mark-read-btn {
+            border-color: #9b6eff;
+            color: #9b6eff;
         }
-
-        .btn-unarchive:hover {
-            background: var(--success-green);
-            color: var(--dark-bg);
+        .card-actions .mark-read-btn:hover {
+            background: #9b6eff;
+            color: #fff;
         }
-
-        .status-badge {
-            display: inline-block;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            font-weight: 600;
-            margin-left: 10px;
+        .card-actions .archive-btn {
+            border-color: #fbbf24;
+            color: #fbbf24;
         }
-
-        .status-badge.unread {
-            background: var(--crisis-red);
-            color: white;
+        .card-actions .archive-btn:hover {
+            background: #fbbf24;
+            color: #0a0216;
         }
-
-        .status-badge.read {
-            background: #4a3a6a;
-            color: #8a7aaa;
-        }
-
-        .status-badge.archived {
-            background: #2a1a4a;
+        .card-actions .unarchive-btn {
+            border-color: #6a5a8a;
             color: #6a5a8a;
         }
-
-        .message-meta {
-            color: #4a3a6a;
-            font-size: 12px;
-            margin-top: 10px;
+        .card-actions .unarchive-btn:hover {
+            background: #6a5a8a;
+            color: #fff;
+        }
+        .card-actions .delete-btn {
+            border-color: #ff3b6f;
+            color: #ff3b6f;
+        }
+        .card-actions .delete-btn:hover {
+            background: #ff3b6f;
+            color: #fff;
+        }
+        .status-badge {
+            font-size: 11px;
+            padding: 2px 12px;
+            border-radius: 30px;
+            margin-left: 10px;
+        }
+        .unread-badge {
+            background: #2a1a2a;
+            color: #ff6b8a;
+        }
+        .read-badge {
+            background: #1a2a1a;
+            color: #4ade80;
+        }
+        .archived-badge {
+            background: #1f2a1a;
+            color: #8a9a7a;
+        }
+        .deleted-badge {
+            background: #2a1a1a;
+            color: #ff6b6b;
         }
 
         .no-messages {
             text-align: center;
-            padding: 80px 20px;
-            background: var(--card-bg);
+            padding: 70px 20px;
+            background: #0f0820;
             border-radius: 16px;
-            border: 1px solid var(--purple-4);
+            border: 1px solid #3b1c6e;
         }
-
-        .no-messages .icon {
-            font-size: 64px;
-            margin-bottom: 20px;
-            opacity: 0.5;
-        }
-
-        .no-messages h3 {
-            color: var(--purple-7);
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-
-        .no-messages p {
-            color: #4a3a6a;
-            font-size: 14px;
-        }
-
+        .no-messages .icon { font-size: 56px; opacity: 0.5; margin-bottom: 16px; }
+        .no-messages h3 { color: #c49eff; margin-bottom: 6px; }
+        .no-messages p { color: #4a3a6a; }
         .spinner {
             text-align: center;
             padding: 60px;
-            color: var(--purple-6);
-            font-size: 18px;
+            color: #9b6eff;
         }
-
         .spinner::after {
             content: '';
             display: inline-block;
             width: 20px;
             height: 20px;
             margin-left: 12px;
-            border: 2px solid var(--purple-4);
-            border-top: 2px solid var(--purple-6);
+            border: 2px solid #3b1c6e;
+            border-top: 2px solid #9b6eff;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
+        @keyframes spin { to { transform: rotate(360deg); } }
         .error {
-            color: var(--crisis-red);
+            color: #ff3b6f;
             text-align: center;
             padding: 30px;
-            background: var(--card-bg);
+            background: #0f0820;
             border-radius: 16px;
-            border: 1px solid var(--crisis-red);
+            border: 1px solid #ff3b6f;
         }
+        .error button {
+            background: #3b1c6e;
+            padding: 10px 28px;
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            cursor: pointer;
+            margin-top: 14px;
+        }
+        .error button:hover { background: #6b3bc9; }
 
         .toast {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            padding: 15px 25px;
+            background: #0f0820;
+            border: 1px solid #3b1c6e;
+            padding: 16px 24px;
             border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            z-index: 9999;
-            animation: slideIn 0.3s ease;
-            display: none;
+            color: #c49eff;
+            font-size: 14px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.6);
+            animation: slideUp 0.3s ease;
+            z-index: 1000;
+        }
+        .toast.success { border-color: #4ade80; color: #4ade80; }
+        .toast.error { border-color: #ff3b6f; color: #ff3b6f; }
+        @keyframes slideUp {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
-        .toast.success {
-            background: var(--success-green);
-            color: var(--dark-bg);
-        }
-
-        .toast.error {
-            background: var(--crisis-red);
-        }
-
-        @keyframes slideIn {
-            from { transform: translateX(100px); opacity: 0; }
-            to { transform: translateX(0); opacity: 1; }
-        }
-
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            .header-actions {
-                justify-content: stretch;
-            }
-            .header-actions button {
-                flex: 1;
-            }
-            .message-header {
-                flex-direction: column;
-            }
-            .sender-name {
-                display: block;
-                margin-bottom: 5px;
-            }
-            .sender-email,
-            .sender-mobile,
-            .sender-institution {
-                display: inline-block;
-                margin: 3px 0;
-            }
-            .login-box {
-                margin: 50px 20px;
-                padding: 30px;
-            }
-            .tabs {
-                flex-direction: column;
-            }
+        @media (max-width: 700px) {
+            .header { flex-direction: column; align-items: stretch; }
+            .header-actions button { flex: 1; }
+            .tabs { flex-direction: column; }
+            .tab-btn { min-width: unset; }
         }
     </style>
 </head>
 <body>
 
-    <div id="loginSection" style="display: none;">
-        <div class="login-box">
-            <h2>🔐 Admin Access</h2>
-            <p class="subtitle">Enter your credentials to view messages</p>
-            <div id="loginError" class="login-error">Invalid password! Please try again.</div>
-            <input type="password" id="passwordInput" placeholder="Enter admin password">
-            <button onclick="login()">Login</button>
-        </div>
+<div id="loginSection" style="display:none;">
+    <div class="login-box">
+        <h2>🔐 Admin</h2>
+        <p class="subtitle">Access the message dashboard</p>
+        <div id="loginError" class="login-error">❌ Invalid password</div>
+        <input type="password" id="passwordInput" placeholder="Enter admin password" />
+        <button onclick="login()">Login</button>
     </div>
+</div>
 
-    <div id="adminSection" style="display: none;">
-        <div class="container">
-            <div class="header">
-                <div class="header-left">
-                    <h1>
-                        📬 Messages
-                        <span id="messageCount">0</span>
-                    </h1>
-                    <div class="stats">
-                        Total: <strong id="totalMessages">0</strong> | 
-                        Unread: <strong id="unreadCount" style="color:var(--crisis-red)">0</strong> | 
-                        Archived: <strong id="archivedCount" style="color:#6a5a8a">0</strong>
-                    </div>
-                </div>
-                <div class="header-actions">
-                    <button class="btn-refresh" onclick="loadMessages()">🔄 Refresh</button>
-                    <button class="btn-logout" onclick="logout()">🚪 Logout</button>
+<div id="adminSection" style="display:none;">
+    <div class="container">
+        <div class="header">
+            <div class="header-left">
+                <h1>
+                    📬 Messages
+                    <span id="messageCount">0</span>
+                </h1>
+                <div class="stats">
+                    Total: <strong id="totalMessages">0</strong> &nbsp;·&nbsp; 
+                    Unread: <strong id="unreadCount">0</strong>
                 </div>
             </div>
-
-            <div class="tabs">
-                <button class="tab active" onclick="switchTab('inbox')" id="tabInbox">📥 Inbox</button>
-                <button class="tab" onclick="switchTab('archived')" id="tabArchived">📦 Archived</button>
-            </div>
-            
-            <div id="messagesContainer">
-                <div class="spinner">Loading messages</div>
+            <div class="header-actions">
+                <button class="btn-refresh" onclick="loadMessages()">🔄 Refresh</button>
+                <button class="btn-logout" onclick="logout()">🚪 Logout</button>
             </div>
         </div>
-    </div>
 
-    <div id="toast" class="toast"></div>
-  <script src = "APP.js"></script>
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="unread" onclick="switchTab('unread')">
+                📥 Unread <span class="badge" id="unreadBadge">0</span>
+            </button>
+            <button class="tab-btn" data-tab="read" onclick="switchTab('read')">
+                ✅ Read <span class="badge" id="readBadge">0</span>
+            </button>
+            <button class="tab-btn" data-tab="archive" onclick="switchTab('archive')">
+                🗃️ Archive <span class="badge" id="archiveBadge">0</span>
+            </button>
+            <button class="tab-btn" data-tab="deleted" onclick="switchTab('deleted')">
+                🗑️ Deleted <span class="badge" id="deletedBadge">0</span>
+            </button>
+        </div>
+
+        <div id="messagesContainer">
+            <div class="spinner">Loading messages</div>
+        </div>
+    </div>
+</div>
+
+<script src="APP.js">
+</script>
 </body>
 </html>
